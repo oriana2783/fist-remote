@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Contacto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark">
+    <div class="container p-5">
+        <div class="card mx-3 mt-n5 shadow-lg"
+            style="border-radius: 10px; border-left: 8px #007bff solid; border-right: none; border-top: none; border-bottom: none;">
+            <div class="card-body">
+                <h3 class="text-primary mb-3" style="text-align: center;">Detalles de Contacto</h3>
+                <div id="formContainer"></div>
+                <button class="btn-primary" style="border-radius: 0px;" type="button"
+                    onclick="window.location.href='index.html'">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Recuperar el índice del objeto de los parámetros de consulta
+        const urlParams = new URLSearchParams(window.location.search);
+        const index = urlParams.get('index');
+
+        // Recuperar el array de personas del localStorage
+        const personaArray = JSON.parse(localStorage.getItem('personas')) || [];
+
+        // Mostrar los detalles del objeto seleccionado
+        if (index !== null && personaArray[index]) {
+            const persona = personaArray[index];
+            const formContainer = document.getElementById('formContainer');
+            formContainer.innerHTML = `
+                <form id="detailsForm">
+                    <div class="form-group">
+                        <label for="detailName">Nombre</label>
+                        <input type="text" class="form-control" id="detailName" value="${persona.nombre}">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailApellido">Apellido</label>
+                        <input type="text" class="form-control" id="detailApellido" value="${persona.apellido}">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailTelefono">Teléfono</label>
+                        <input type="text" class="form-control" id="detailTelefono" value="${persona.telefono}">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailEmail">Email</label>
+                        <input type="email" class="form-control" id="detailEmail" value="${persona.email}">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailCiudad">Ciudad</label>
+                        <input type="text" class="form-control" id="detailCiudad" value="${persona.ciudad}">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailPais">País</label>
+                        <input type="text" class="form-control" id="detailPais" value="${persona.pais}">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveDetails(${index})">Guardar</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteContact(${index})">Eliminar</button>
+                </form>
+            `;
+        }
+
+        function saveDetails(index) {
+            const persona = {
+                nombre: document.getElementById('detailName').value,
+                apellido: document.getElementById('detailApellido').value,
+                telefono: document.getElementById('detailTelefono').value,
+                email: document.getElementById('detailEmail').value,
+                ciudad: document.getElementById('detailCiudad').value,
+                pais: document.getElementById('detailPais').value
+            };
+
+            // Actualizar el objeto en el array
+            personaArray[index] = persona;
+
+            // Guardar el array actualizado en localStorage
+            localStorage.setItem('personas', JSON.stringify(personaArray));
+
+            // Mostrar un mensaje de éxito
+            alert("Datos actualizados con éxito.");
+
+            // Redirigir de vuelta a la página principal
+            window.location.href = 'index.html';
+        }
+
+    </script>
+</body>
+
+</html>
