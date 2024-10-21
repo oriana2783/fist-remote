@@ -35,6 +35,9 @@ function processContactForm(e) {
 
     // Mostrar un mensaje de éxito
     alert("Datos guardados con éxito.");
+
+    // Resetear el formulario
+    document.getElementById('contactos').reset();
 }
 function listarContactos() {
     const tableContainer = document.getElementById('tablecontac');

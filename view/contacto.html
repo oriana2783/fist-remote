@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/morgage.css">
     <title>Formulario de Contacto</title>
 
     <!-- Incluye solo uno de los siguientes, preferiblemente el CDN para mejor rendimiento -->
@@ -29,7 +30,6 @@
                 <h3 class="text-primary mb-3" style="text-align: center;">Formulario de contacto</h3>
 
                 <form action="" id="contactos" onsubmit="processContactForm(event)" method="get" target="_self">
-
                     <div class="row">
                         <div class="col">
                             <label for="name">Nombre</label>
@@ -69,16 +69,12 @@
                     <div>
                         <button class="btn-primary" style="border-radius:0px;" type="submit"> Guardar</button>
                     </div>
-                   
                 </form>
-                <button class="btn-primary" style="border-radius: 0px;" type="button"
-                onclick="window.location.href='../index.html'">atras</button>
-               
-                <button class="btn-primary" style="border-radius: 0px;" type="button" onclick="listarContactos()">listar</button>
-                
-                <div id="tablecontac">
-                        
-                </div>
+                <button class="btn-primary" style="border-radius: 0px;" type="button" onclick="window.location.href='../index.html'">Atras</button>
+                <button class="btn-primary" style="border-radius: 0px;" type="button" onclick="listarContactos()">Listar</button>
+
+                <div id="tablecontac" class="tableFixHead"></div>
+                <div id="formContainer"></div>
 
                 <script src="../js/contacto.js"></script>
             </div>
